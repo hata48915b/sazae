@@ -1,0 +1,37 @@
+#!/bin/sh
+
+# zsh，python，migemoのインストール
+if ( ! which zsh > /dev/null ); then
+    echo 'error: no zsh.' > /dev/stderr
+fi
+if ( ! which python > /dev/null ); then
+    if ( ! which python2 > /dev/null ); then
+	if ( ! which python3 > /dev/null ); then
+	    echo 'error: no python.' > /dev/stderr
+	fi
+    fi
+fi
+if ( ! which cmigemo > /dev/null ); then
+    if ( ! which migemo > /dev/null ); then
+	echo 'error: no migemo.' > /dev/stderr
+    elif ( ! which nkf > /dev/null ); then
+	echo 'error: no nkf.' > /dev/stderr
+    fi
+fi
+
+# ファイルのインストール
+if [ -e ~/.zshrc-sazae ]; then
+    mkdir -p ~/.zshrc-sazae.old
+    mv -f ~/.zshrc-sazae ~/.zshrc-sazae.old/`date +%y%m%d%H%M%S`
+fi
+mkdir -p ~/.zshrc-sazae
+cp -Rp `dirname $0`/* ~/.zshrc-sazae
+touch -r `dirname $0` ~/.zshrc-sazae
+
+# 設定ファイルへの書込み
+grep '~/.zshrc-sazae/zshrc' ~/.zshrc > /dev/null && exit
+cp -p ~/.zshrc ~/.zshrc.saved-by-sazae
+printf %b '\n'                                                             >> ~/.zshrc
+printf %b '#==========================================================#\n' >> ~/.zshrc
+printf %b '# SAZAE(complement with migemo)\n'                              >> ~/.zshrc
+printf %b 'test -r ~/.zshrc-sazae/zshrc && source ~/.zshrc-sazae/zshrc\n'  >> ~/.zshrc
