@@ -63,6 +63,10 @@ zsh> cat 山口県
 山口市
 ```
 
+![SAZAEの再現動画](https://github.com/hata48915b/sazae/blob/main/depot/sazae-example.gif "SAZAEの再現動画")
+
+分かりやすいように、速度を落としてあります。
+
 ## 動作環境
 
 zsh、python、migemo（cmigemo）等がインストールしてあれば、動くと思います。
