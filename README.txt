@@ -26,6 +26,8 @@ zshは非常に優れた補完機能を有していますが、日本語のフ�
 「山形県.txt」と「山口県.txt」「山梨県.txt」を実際に補完します。
 
 実行例
+
+``` sh
 zsh> cd todo (Ctrl-i or Tab)
 zsh> cd 都道府県/
 zsh> ls
@@ -59,6 +61,7 @@ zsh> cat 和歌山県
 zsh> cat yamaguchi (Ctrl-i or Tab)
 zsh> cat 山口県
 山口市
+```
 
 ## 動作環境
 
@@ -298,7 +301,7 @@ zshのスクリプトのみで実装したいと考えています。
 
 ## 著作権
 
-Copyright © 2017-2023  Seiichiro HATA
+Copyright © 2017-2024  Seiichiro HATA
 
 ## ライセンス
 
