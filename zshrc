@@ -1,8 +1,8 @@
 # Name:         ~/.zshrc-sazae/zshrc
 # Version:      v26
-# Time-stamp:   <2023.04.29-09:02:16-JST>
+# Time-stamp:   <2026.04.21-14:52:07-JST>
 #
-# Copyright (C) 2017-2023  Seiichiro HATA
+# Copyright (C) 2017-2026  Seiichiro HATA
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -667,7 +667,7 @@ _sazae-get-candidates (){
     r="$m|$r"
     if [ ! -z "$sazae_plus" ]; then
 	if [ ! -z "$g$m" ]; then
-	    \printf %s "$sazae_plus" | eval "\grep -a -E \"^$g($r)\"" 2> /dev/null
+	    \printf %b "$sazae_plus" | eval "\grep -a -E \"^$g($r)\"" 2> /dev/null
 	fi
     fi
     if [ "$sazae_mode" = 'moun' -a -r /etc/mtab ]; then
