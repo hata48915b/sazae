@@ -189,17 +189,6 @@ migemoを用いて、日本語を候補に入れます。
 配布するzipファイルに、各都道府県名をファイル名にしたテストデータ集
 （test-data.tgz）を入れてありますので、適当に展開してテストにお使いください。
 
-## ライセンス
-
-GNU General Public Licenseバージョン3 (GPLv3)又はその後継バージョン
-
-GPLv3のライセンス条項は、LICENSE-GPLv3.txtをご覧ください。
-
-## 免責条項
-
-ライセンスに定められているとおり、本プログラムにより損害が発生したとしても、
-著作権者は何らの損害賠償責任も負いませんので、ご注意ください。
-
 ## 問題点
 
 ### zshの本来的補完ができなくなる点
@@ -305,7 +294,7 @@ zshのスクリプトのみで実装したいと考えています。
 
 ## 著作権
 
-Copyright © 2017-2024  Seiichiro HATA
+Copyright © 2017-2026  Seiichiro HATA
 
 ## ライセンス
 
@@ -324,6 +313,8 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+GPLv3のライセンス条項は、`LICENSE`をご覧ください。
+
 ## 連絡先
 
 [弁護士 秦 誠一郎の公式ページ](https://hata-o.jp/hata48915b/)
@@ -338,9 +329,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ライセンスに定められているとおり、本プログラムにより損害が発生したとしても、
 著作権者は何らの損害賠償責任も負いませんので、ご注意ください。
-
-作成した文書は、必ず内容を確認し、
-意図した内容になっていることを確認したうえで、使用してください。
 
 ## ヒストリー
 

@@ -2,10 +2,10 @@
 # coding: utf-8
 #
 # Name:         ~/.zshrc-sazae/python/sazae_analyze_buffer.py
-# Version:      v20
-# Time-stamp:   <2023.01.06-09:31:30-JST>
+# Version:      v21
+# Time-stamp:   <2026.04.21-13:54:18-JST>
 #
-# Copyright (C) 2017-2023  Seiichiro HATA
+# Copyright (C) 2017-2026  Seiichiro HATA
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -88,7 +88,7 @@
 #     'File'
 #     '^.*\.(m|M)|(p|P)|3$'
 #     ''
-#     'http://\\nhttps://'
+#     'http://\nhttps://'
 #     'END'
 
 
@@ -208,7 +208,8 @@ class Buffer:
         for _char in _buf_string:
             if(re.match(NOT_ESCAPED + '$', _substring)):
                 if(_unclosed_signs == ''):
-                    if(re.match('^[\\s\\|&;<>]$', _char) and (_char != '\u3000')):
+                    if(re.match('^[\\s\\|&;<>]$', _char) and
+                       (_char != '\u3000')):
                         if(_is_in_word):
                             # END OF WORD
                             _buf_array \
@@ -222,7 +223,8 @@ class Buffer:
                                 = self._record_buffer(_buf_array, _substring)
                             _substring = ''
                             _is_in_word = True
-                if((_buf_array[2] == '') and re.match('^[\'"`\\(\\)]$', _char)):
+                if((_buf_array[2] == '') and
+                   re.match('^[\'"`\\(\\)]$', _char)):
                     # BEGGINING OR END OF CHUNK
                     _unclosed_signs \
                         = self._remake_unclosed_signs(_unclosed_signs, _char)
@@ -408,32 +410,32 @@ class Buffer:
             if(re.match('^bundle\\s+$', _last)):
                 self.mode = 'File'
                 self.plus = 'install' \
-                    + '\\n'+ 'update' \
-                    + '\\n'+ 'cache' \
-                    + '\\n'+ 'exec' \
-                    + '\\n'+ 'config' \
-                    + '\\n'+ 'help' \
-                    + '\\n'+ 'add' \
-                    + '\\n'+ 'binstubs' \
-                    + '\\n'+ 'check' \
-                    + '\\n'+ 'clean' \
-                    + '\\n'+ 'console' \
-                    + '\\n'+ 'doctor' \
-                    + '\\n'+ 'gem' \
-                    + '\\n'+ 'info' \
-                    + '\\n'+ 'init' \
-                    + '\\n'+ 'inject' \
-                    + '\\n'+ 'list' \
-                    + '\\n'+ 'lock' \
-                    + '\\n'+ 'open' \
-                    + '\\n'+ 'outdated' \
-                    + '\\n'+ 'platform' \
-                    + '\\n'+ 'plugin' \
-                    + '\\n'+ 'pristine' \
-                    + '\\n'+ 'remove' \
-                    + '\\n'+ 'show' \
-                    + '\\n'+ 'version' \
-                    + '\\n'+ 'viz'
+                    + '\n' + 'update' \
+                    + '\n' + 'cache' \
+                    + '\n' + 'exec' \
+                    + '\n' + 'config' \
+                    + '\n' + 'help' \
+                    + '\n' + 'add' \
+                    + '\n' + 'binstubs' \
+                    + '\n' + 'check' \
+                    + '\n' + 'clean' \
+                    + '\n' + 'console' \
+                    + '\n' + 'doctor' \
+                    + '\n' + 'gem' \
+                    + '\n' + 'info' \
+                    + '\n' + 'init' \
+                    + '\n' + 'inject' \
+                    + '\n' + 'list' \
+                    + '\n' + 'lock' \
+                    + '\n' + 'open' \
+                    + '\n' + 'outdated' \
+                    + '\n' + 'platform' \
+                    + '\n' + 'plugin' \
+                    + '\n' + 'pristine' \
+                    + '\n' + 'remove' \
+                    + '\n' + 'show' \
+                    + '\n' + 'version' \
+                    + '\n' + 'viz'
             else:
                 self.mode = 'norm'
         elif(re.match('^bzip2\\s+', _last)):
@@ -609,33 +611,33 @@ class Buffer:
             if(re.match('^gem\\s+$', _last)):
                 self.mode = 'File'
                 self.plus = 'env' \
-                    + '\\n'+ 'help' \
-                    + '\\n'+ 'build' \
-                    + '\\n'+ 'cert' \
-                    + '\\n'+ 'check' \
-                    + '\\n'+ 'cleanup' \
-                    + '\\n'+ 'contents' \
-                    + '\\n'+ 'dependency' \
-                    + '\\n'+ 'environment' \
-                    + '\\n'+ 'fetch' \
-                    + '\\n'+ 'generate_index' \
-                    + '\\n'+ 'help' \
-                    + '\\n'+ 'install' \
-                    + '\\n'+ 'list' \
-                    + '\\n'+ 'lock' \
-                    + '\\n'+ 'mirror' \
-                    + '\\n'+ 'outdated' \
-                    + '\\n'+ 'pristine' \
-                    + '\\n'+ 'query' \
-                    + '\\n'+ 'rdoc' \
-                    + '\\n'+ 'search' \
-                    + '\\n'+ 'server' \
-                    + '\\n'+ 'sources' \
-                    + '\\n'+ 'specification' \
-                    + '\\n'+ 'uninstall' \
-                    + '\\n'+ 'unpack' \
-                    + '\\n'+ 'update' \
-                    + '\\n'+ 'which'
+                    + '\n' + 'help' \
+                    + '\n' + 'build' \
+                    + '\n' + 'cert' \
+                    + '\n' + 'check' \
+                    + '\n' + 'cleanup' \
+                    + '\n' + 'contents' \
+                    + '\n' + 'dependency' \
+                    + '\n' + 'environment' \
+                    + '\n' + 'fetch' \
+                    + '\n' + 'generate_index' \
+                    + '\n' + 'help' \
+                    + '\n' + 'install' \
+                    + '\n' + 'list' \
+                    + '\n' + 'lock' \
+                    + '\n' + 'mirror' \
+                    + '\n' + 'outdated' \
+                    + '\n' + 'pristine' \
+                    + '\n' + 'query' \
+                    + '\n' + 'rdoc' \
+                    + '\n' + 'search' \
+                    + '\n' + 'server' \
+                    + '\n' + 'sources' \
+                    + '\n' + 'specification' \
+                    + '\n' + 'uninstall' \
+                    + '\n' + 'unpack' \
+                    + '\n' + 'update' \
+                    + '\n' + 'which'
             else:
                 self.mode = 'norm'
         elif(re.match('^git\\s+', _last)):
@@ -762,38 +764,69 @@ class Buffer:
             else:
                 self.mode = 'File'
                 self.regexp = '^.*\\.(p|P)(d|D)(f|F)$'
-                self.plus = 'input_pw' \
-                            + '\\n'+ 'output' \
-                            + '\\n'+ 'encrypt_40bit\\nencrypt_128bit' \
-                            + '\\n'+ 'allow' \
-                            + '\\n'+ 'owner_pw' \
-                            + '\\n'+ 'user_pw' \
-                            + '\\n'+ 'flatten' \
-                            + '\\n'+ 'need_appearances' \
-                            + '\\n'+ 'compress\\nuncompress' \
-                            + '\\n'+ 'keep_first_id\\nkeep_final_id' \
-                            + '\\n'+ 'drop_xfa' \
-                            + '\\n'+ 'drop_xmp' \
-                            + '\\n'+ 'verbose' \
-                            + '\\n'+ 'dont_ask\\ndo_ask' \
-                            + '\\n'+ 'cat' \
-                            + '\\n'+ 'shuffle' \
-                            + '\\n'+ 'burst' \
-                            + '\\n'+ 'rotate' \
-                            + '\\n'+ 'generate_fdf' \
-                            + '\\n'+ 'fill_form' \
-                            + '\\n'+ 'background\\nmultibackground' \
-                            + '\\n'+ 'stamp\\nmultistamp' \
-                            + '\\n'+ 'dump_data\\ndump_data_utf8' \
-                            + '\\n'+ 'dump_data_fields\\ndump_data_fields_utf8' \
-                            + '\\n'+ 'dump_data_annots' \
-                            + '\\n'+ 'update_info\\nupdate_info_utf8' \
-                            + '\\n'+ 'attach_files' \
-                            + '\\n'+ 'unpack_files' \
-                            + '\\n'+ '1-endeast\\n1-endsouth\\n1-endwest' \
-                            + '\\n'+ '1-endnorth\\n1-endodd\\n1-endeven'
+                self.plus \
+                    = 'input_pw' \
+                    + '\n' + 'output' \
+                    + '\n' + 'encrypt_40bit\nencrypt_128bit' \
+                    + '\n' + 'allow' \
+                    + '\n' + 'owner_pw' \
+                    + '\n' + 'user_pw' \
+                    + '\n' + 'flatten' \
+                    + '\n' + 'need_appearances' \
+                    + '\n' + 'compress\nuncompress' \
+                    + '\n' + 'keep_first_id\nkeep_final_id' \
+                    + '\n' + 'drop_xfa' \
+                    + '\n' + 'drop_xmp' \
+                    + '\n' + 'verbose' \
+                    + '\n' + 'dont_ask\ndo_ask' \
+                    + '\n' + 'cat' \
+                    + '\n' + 'shuffle' \
+                    + '\n' + 'burst' \
+                    + '\n' + 'rotate' \
+                    + '\n' + 'generate_fdf' \
+                    + '\n' + 'fill_form' \
+                    + '\n' + 'background\nmultibackground' \
+                    + '\n' + 'stamp\nmultistamp' \
+                    + '\n' + 'dump_data\ndump_data_utf8' \
+                    + '\n' + 'dump_data_fields\ndump_data_fields_utf8' \
+                    + '\n' + 'dump_data_annots' \
+                    + '\n' + 'update_info\nupdate_info_utf8' \
+                    + '\n' + 'attach_files' \
+                    + '\n' + 'unpack_files' \
+                    + '\n' + '1-endeast\n1-endsouth\n1-endwest' \
+                    + '\n' + '1-endnorth\n1-endodd\n1-endeven'
         elif(re.match('^ping\\s+', _last)):
             self.mode = 'norm'
+        elif(re.match('^pip\\s+', _last)):
+            self.mode = 'File'
+            if(re.match('^pip\\s+$', _last)):
+                self.plus = 'install' \
+                    + '\n' + 'downloan' \
+                    + '\n' + 'uninstall' \
+                    + '\n' + 'freeze' \
+                    + '\n' + 'list' \
+                    + '\n' + 'show' \
+                    + '\n' + 'check' \
+                    + '\n' + 'config' \
+                    + '\n' + 'check' \
+                    + '\n' + 'clean' \
+                    + '\n' + 'console' \
+                    + '\n' + 'doctor' \
+                    + '\n' + 'gem' \
+                    + '\n' + 'info' \
+                    + '\n' + 'init' \
+                    + '\n' + 'inject' \
+                    + '\n' + 'list' \
+                    + '\n' + 'lock' \
+                    + '\n' + 'open' \
+                    + '\n' + 'outdated' \
+                    + '\n' + 'platform' \
+                    + '\n' + 'plugin' \
+                    + '\n' + 'pristine' \
+                    + '\n' + 'remove' \
+                    + '\n' + 'show' \
+                    + '\n' + 'version' \
+                    + '\n' + 'viz'
         elif(re.match('^platex\\s+', _last)):
             self.mode = 'File'
             self.regexp = '^.*\\.(t|T)(e|E)(x|X)$'
@@ -831,11 +864,12 @@ class Buffer:
             _last = re.sub('\\s+-(-gzip|-gunzip|-ungzip)\\s+',   ' -z ', _last)
             _last = re.sub('\\s+-(-bzip2)\\s+',                  ' -j ', _last)
             _last = re.sub('\\s+-(-xz)\\s+',                     ' -J ', _last)
-            _last = re.sub('\\s+-(b|-block-size)\\s+\\S+\\s+',        ' ', _last)
-            _last = re.sub('\\s+-(C|-directory)\\s+\\S+\\s+',         ' ', _last)
-            _last = re.sub('\\s+-(N|-after-date|-newer)\\s+\\S+\\s+', ' ', _last)
-            _last = re.sub('\\s+-(V|-label)\\s+\\S+\\s+',             ' ', _last)
-            _last = re.sub('\\s+-(X|-exclude-from)\\s+\\S+\\s+',      ' ', _last)
+            _last = re.sub('\\s+-(b|-block-size)\\s+\\S+\\s+',   ' ',    _last)
+            _last = re.sub('\\s+-(C|-directory)\\s+\\S+\\s+',    ' ',    _last)
+            _last \
+                = re.sub('\\s+-(N|-after-date|-newer)\\s+\\S+\\s+', ' ', _last)
+            _last = re.sub('\\s+-(V|-label)\\s+\\S+\\s+',        ' ',    _last)
+            _last = re.sub('\\s+-(X|-exclude-from)\\s+\\S+\\s+', ' ',    _last)
             _temp = _last
             while(re.match('^.*\\s+-\\S+\\s+', _temp)):
                 _temp = re.sub('\\s+-\\S+\\s+', ' ', _temp)
@@ -864,7 +898,8 @@ class Buffer:
                     elif(re.match('^.*\\s+-z\\s+', _last)):
                         self.regexp = '^.*\\.(t|T)((a|A)(r|R)\\.)?(g|G)(z|Z)$'
                     elif(re.match('^.*\\s+-j\\s+', _last)):
-                        self.regexp = '^.*\\.(t|T)((a|A)(r|R)\\.)?(b|B)(z|Z)2?$'
+                        self.regexp \
+                            = '^.*\\.(t|T)((a|A)(r|R)\\.)?(b|B)(z|Z)2?$'
                     elif(re.match('^.*\\s+-J\\s+', _last)):
                         self.regexp = '^.*\\.(t|T)((a|A)(r|R)\\.)?(x|X)(z|Z)$'
                     else:
@@ -880,7 +915,8 @@ class Buffer:
             while(re.match('^.*\\s+-([a-zA-Z0-9])([a-zA-Z0-9]+)\\s+', _last)):
                 _last = re.sub('\\s+-([a-zA-Z0-9])([a-zA-Z0-9]+)\\s+',
                                ' -\\1 -\\2 ', _last)
-            _last = re.sub('\\s+-(I|O|P|d)\\s+\\S+\\s+', ' ', _last)
+            while(re.match('\\s+-(I|O|P|d)\\s+\\S+\\s+', _last)):
+                _last = re.sub('\\s+-(I|O|P|d)\\s+\\S+\\s+', ' ', _last)
             _temp = re.sub('^.*\\s+-\\S+\\s+', ' ', _last)
             if(re.match('^\\s+$', _temp)):
                 self.mode = 'File'
