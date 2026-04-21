@@ -40,7 +40,7 @@ zsh> ls
 岐阜県.txt   高知県.txt   鹿児島県.txt 大阪府.txt   栃木県.txt   和歌山県.txt
 宮崎県.txt   佐賀県.txt   秋田県.txt   大分県.txt   奈良県.txt
 zsh> cat yama (Ctrl-d)
-山形県.txt 山口県.txt 山梨県.txt                                             
+山形県.txt 山口県.txt 山梨県.txt
 zsh> cat yama (Ctrl-i or Tab)
 zsh> cat 山 (Ctrl-i or Tab)
 zsh> cat 山形県 (Ctrl-i or Tab)
@@ -48,7 +48,7 @@ zsh> cat 山口県 (Ctrl-i or Tab)
 zsh> cat 山梨県
 甲府市
 zsh> cat *yama (Ctrl-d)
-岡山県.txt   山形県.txt   山口県.txt   山梨県.txt   富山県.txt   和歌山県.txt 
+岡山県.txt   山形県.txt   山口県.txt   山梨県.txt   富山県.txt   和歌山県.txt
 zsh> cat *yama (Ctrl-i or Tab)
 zsh> cat  (Ctrl-i or Tab)
 zsh> cat 岡山県 (Ctrl-i or Tab)
