@@ -3,7 +3,7 @@
 #
 # Name:         ~/.zshrc-sazae/python/sazae_analyze_buffer.py
 # Version:      v21
-# Time-stamp:   <2026.04.21-14:27:47-JST>
+# Time-stamp:   <2026.04.21-14:44:58-JST>
 #
 # Copyright (C) 2017-2026  Seiichiro HATA
 #
@@ -88,7 +88,7 @@
 #     'File'
 #     '^.*\.(m|M)|(p|P)|3$'
 #     ''
-#     'http://\nhttps://'
+#     'http://\\nhttps://'
 #     'END'
 
 
@@ -409,33 +409,34 @@ class Buffer:
             # RUBY
             if(re.match('^bundle\\s+$', _last)):
                 self.mode = 'File'
+                # Not '\n' but '\\n'
                 self.plus = 'install' \
-                    + '\n' + 'update' \
-                    + '\n' + 'cache' \
-                    + '\n' + 'exec' \
-                    + '\n' + 'config' \
-                    + '\n' + 'help' \
-                    + '\n' + 'add' \
-                    + '\n' + 'binstubs' \
-                    + '\n' + 'check' \
-                    + '\n' + 'clean' \
-                    + '\n' + 'console' \
-                    + '\n' + 'doctor' \
-                    + '\n' + 'gem' \
-                    + '\n' + 'info' \
-                    + '\n' + 'init' \
-                    + '\n' + 'inject' \
-                    + '\n' + 'list' \
-                    + '\n' + 'lock' \
-                    + '\n' + 'open' \
-                    + '\n' + 'outdated' \
-                    + '\n' + 'platform' \
-                    + '\n' + 'plugin' \
-                    + '\n' + 'pristine' \
-                    + '\n' + 'remove' \
-                    + '\n' + 'show' \
-                    + '\n' + 'version' \
-                    + '\n' + 'viz'
+                    + '\\n' + 'update' \
+                    + '\\n' + 'cache' \
+                    + '\\n' + 'exec' \
+                    + '\\n' + 'config' \
+                    + '\\n' + 'help' \
+                    + '\\n' + 'add' \
+                    + '\\n' + 'binstubs' \
+                    + '\\n' + 'check' \
+                    + '\\n' + 'clean' \
+                    + '\\n' + 'console' \
+                    + '\\n' + 'doctor' \
+                    + '\\n' + 'gem' \
+                    + '\\n' + 'info' \
+                    + '\\n' + 'init' \
+                    + '\\n' + 'inject' \
+                    + '\\n' + 'list' \
+                    + '\\n' + 'lock' \
+                    + '\\n' + 'open' \
+                    + '\\n' + 'outdated' \
+                    + '\\n' + 'platform' \
+                    + '\\n' + 'plugin' \
+                    + '\\n' + 'pristine' \
+                    + '\\n' + 'remove' \
+                    + '\\n' + 'show' \
+                    + '\\n' + 'version' \
+                    + '\\n' + 'viz'
             else:
                 self.mode = 'norm'
         elif(re.match('^bzip2\\s+', _last)):
@@ -610,34 +611,35 @@ class Buffer:
             # RUBY
             if(re.match('^gem\\s+$', _last)):
                 self.mode = 'File'
+                # Not '\n' but '\\n'
                 self.plus = 'env' \
-                    + '\n' + 'help' \
-                    + '\n' + 'build' \
-                    + '\n' + 'cert' \
-                    + '\n' + 'check' \
-                    + '\n' + 'cleanup' \
-                    + '\n' + 'contents' \
-                    + '\n' + 'dependency' \
-                    + '\n' + 'environment' \
-                    + '\n' + 'fetch' \
-                    + '\n' + 'generate_index' \
-                    + '\n' + 'help' \
-                    + '\n' + 'install' \
-                    + '\n' + 'list' \
-                    + '\n' + 'lock' \
-                    + '\n' + 'mirror' \
-                    + '\n' + 'outdated' \
-                    + '\n' + 'pristine' \
-                    + '\n' + 'query' \
-                    + '\n' + 'rdoc' \
-                    + '\n' + 'search' \
-                    + '\n' + 'server' \
-                    + '\n' + 'sources' \
-                    + '\n' + 'specification' \
-                    + '\n' + 'uninstall' \
-                    + '\n' + 'unpack' \
-                    + '\n' + 'update' \
-                    + '\n' + 'which'
+                    + '\\n' + 'help' \
+                    + '\\n' + 'build' \
+                    + '\\n' + 'cert' \
+                    + '\\n' + 'check' \
+                    + '\\n' + 'cleanup' \
+                    + '\\n' + 'contents' \
+                    + '\\n' + 'dependency' \
+                    + '\\n' + 'environment' \
+                    + '\\n' + 'fetch' \
+                    + '\\n' + 'generate_index' \
+                    + '\\n' + 'help' \
+                    + '\\n' + 'install' \
+                    + '\\n' + 'list' \
+                    + '\\n' + 'lock' \
+                    + '\\n' + 'mirror' \
+                    + '\\n' + 'outdated' \
+                    + '\\n' + 'pristine' \
+                    + '\\n' + 'query' \
+                    + '\\n' + 'rdoc' \
+                    + '\\n' + 'search' \
+                    + '\\n' + 'server' \
+                    + '\\n' + 'sources' \
+                    + '\\n' + 'specification' \
+                    + '\\n' + 'uninstall' \
+                    + '\\n' + 'unpack' \
+                    + '\\n' + 'update' \
+                    + '\\n' + 'which'
             else:
                 self.mode = 'norm'
         elif(re.match('^git\\s+', _last)):
@@ -764,69 +766,70 @@ class Buffer:
             else:
                 self.mode = 'File'
                 self.regexp = '^.*\\.(p|P)(d|D)(f|F)$'
+                # Not '\n' but '\\n'
                 self.plus \
                     = 'input_pw' \
-                    + '\n' + 'output' \
-                    + '\n' + 'encrypt_40bit\nencrypt_128bit' \
-                    + '\n' + 'allow' \
-                    + '\n' + 'owner_pw' \
-                    + '\n' + 'user_pw' \
-                    + '\n' + 'flatten' \
-                    + '\n' + 'need_appearances' \
-                    + '\n' + 'compress\nuncompress' \
-                    + '\n' + 'keep_first_id\nkeep_final_id' \
-                    + '\n' + 'drop_xfa' \
-                    + '\n' + 'drop_xmp' \
-                    + '\n' + 'verbose' \
-                    + '\n' + 'dont_ask\ndo_ask' \
-                    + '\n' + 'cat' \
-                    + '\n' + 'shuffle' \
-                    + '\n' + 'burst' \
-                    + '\n' + 'rotate' \
-                    + '\n' + 'generate_fdf' \
-                    + '\n' + 'fill_form' \
-                    + '\n' + 'background\nmultibackground' \
-                    + '\n' + 'stamp\nmultistamp' \
-                    + '\n' + 'dump_data\ndump_data_utf8' \
-                    + '\n' + 'dump_data_fields\ndump_data_fields_utf8' \
-                    + '\n' + 'dump_data_annots' \
-                    + '\n' + 'update_info\nupdate_info_utf8' \
-                    + '\n' + 'attach_files' \
-                    + '\n' + 'unpack_files' \
-                    + '\n' + '1-endeast\n1-endsouth\n1-endwest' \
-                    + '\n' + '1-endnorth\n1-endodd\n1-endeven'
+                    + '\\n' + 'output' \
+                    + '\\n' + 'encrypt_40bit\\nencrypt_128bit' \
+                    + '\\n' + 'allow' \
+                    + '\\n' + 'owner_pw' \
+                    + '\\n' + 'user_pw' \
+                    + '\\n' + 'flatten' \
+                    + '\\n' + 'need_appearances' \
+                    + '\\n' + 'compress\\nuncompress' \
+                    + '\\n' + 'keep_first_id\\nkeep_final_id' \
+                    + '\\n' + 'drop_xfa' \
+                    + '\\n' + 'drop_xmp' \
+                    + '\\n' + 'verbose' \
+                    + '\\n' + 'dont_ask\\ndo_ask' \
+                    + '\\n' + 'cat' \
+                    + '\\n' + 'shuffle' \
+                    + '\\n' + 'burst' \
+                    + '\\n' + 'rotate' \
+                    + '\\n' + 'generate_fdf' \
+                    + '\\n' + 'fill_form' \
+                    + '\\n' + 'background\\nmultibackground' \
+                    + '\\n' + 'stamp\\nmultistamp' \
+                    + '\\n' + 'dump_data\\ndump_data_utf8' \
+                    + '\\n' + 'dump_data_fields\\ndump_data_fields_utf8' \
+                    + '\\n' + 'dump_data_annots' \
+                    + '\\n' + 'update_info\\nupdate_info_utf8' \
+                    + '\\n' + 'attach_files' \
+                    + '\\n' + 'unpack_files' \
+                    + '\\n' + '1-endeast\\n1-endsouth\\n1-endwest' \
+                    + '\\n' + '1-endnorth\\n1-endodd\\n1-endeven'
         elif(re.match('^ping\\s+', _last)):
             self.mode = 'norm'
         elif(re.match('^pip\\s+', _last)):
             self.mode = 'File'
             if(re.match('^pip\\s+$', _last)):
                 self.plus = 'install' \
-                    + '\n' + 'downloan' \
-                    + '\n' + 'uninstall' \
-                    + '\n' + 'freeze' \
-                    + '\n' + 'list' \
-                    + '\n' + 'show' \
-                    + '\n' + 'check' \
-                    + '\n' + 'config' \
-                    + '\n' + 'check' \
-                    + '\n' + 'clean' \
-                    + '\n' + 'console' \
-                    + '\n' + 'doctor' \
-                    + '\n' + 'gem' \
-                    + '\n' + 'info' \
-                    + '\n' + 'init' \
-                    + '\n' + 'inject' \
-                    + '\n' + 'list' \
-                    + '\n' + 'lock' \
-                    + '\n' + 'open' \
-                    + '\n' + 'outdated' \
-                    + '\n' + 'platform' \
-                    + '\n' + 'plugin' \
-                    + '\n' + 'pristine' \
-                    + '\n' + 'remove' \
-                    + '\n' + 'show' \
-                    + '\n' + 'version' \
-                    + '\n' + 'viz'
+                    + '\\n' + 'downloan' \
+                    + '\\n' + 'uninstall' \
+                    + '\\n' + 'freeze' \
+                    + '\\n' + 'list' \
+                    + '\\n' + 'show' \
+                    + '\\n' + 'check' \
+                    + '\\n' + 'config' \
+                    + '\\n' + 'check' \
+                    + '\\n' + 'clean' \
+                    + '\\n' + 'console' \
+                    + '\\n' + 'doctor' \
+                    + '\\n' + 'gem' \
+                    + '\\n' + 'info' \
+                    + '\\n' + 'init' \
+                    + '\\n' + 'inject' \
+                    + '\\n' + 'list' \
+                    + '\\n' + 'lock' \
+                    + '\\n' + 'open' \
+                    + '\\n' + 'outdated' \
+                    + '\\n' + 'platform' \
+                    + '\\n' + 'plugin' \
+                    + '\\n' + 'pristine' \
+                    + '\\n' + 'remove' \
+                    + '\\n' + 'show' \
+                    + '\\n' + 'version' \
+                    + '\\n' + 'viz'
         elif(re.match('^platex\\s+', _last)):
             self.mode = 'File'
             self.regexp = '^.*\\.(t|T)(e|E)(x|X)$'
