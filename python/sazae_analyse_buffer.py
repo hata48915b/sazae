@@ -3,7 +3,7 @@
 #
 # Name:         ~/.zshrc-sazae/python/sazae_analyze_buffer.py
 # Version:      v21
-# Time-stamp:   <2026.04.21-14:44:58-JST>
+# Time-stamp:   <2026.04.22-09:36:22-JST>
 #
 # Copyright (C) 2017-2026  Seiichiro HATA
 #
@@ -99,6 +99,7 @@
 
 import sys
 import re
+import subprocess
 
 
 ############################################################
@@ -726,6 +727,9 @@ class Buffer:
                           + 'mml|Mml|MML|' \
                           + 'odb|Odb|ODB|' \
                           + ')$'
+        elif(re.match('^makdo\\s+', _last)):
+            self.mode = 'Flie'
+            self.regexp = '^.*\\.((m|M)(d|D)|(d|D)(o|O)(c|C)(x|X))$'
         elif(re.match('^md2docx\\s+', _last)):
             self.mode = 'Flie'
             if(not re.match('^.*\\.md\\s+$', _last, re.I)):
@@ -744,6 +748,52 @@ class Buffer:
             self.regexp = '^.*\\.(m|M)(p|P)3$'
         elif(re.match('^man\\s+', _last)):
             self.mode = 'comm'
+        elif(re.match('^ollama\\s+', _last)):
+            if(re.match('^ollama\\s+$', _last)):
+                # Not '\n' but '\\n'
+                self.plus = 'serve' \
+                    '\\n' + 'create' \
+                    '\\n' + 'show' \
+                    '\\n' + 'run' \
+                    '\\n' + 'stop' \
+                    '\\n' + 'pull' \
+                    '\\n' + 'push' \
+                    '\\n' + 'signin' \
+                    '\\n' + 'signout' \
+                    '\\n' + 'list' \
+                    '\\n' + 'ps' \
+                    '\\n' + 'cp' \
+                    '\\n' + 'rm' \
+                    '\\n' + 'launch' \
+                    '\\n' + 'help'
+            elif(re.match('^ollama\\s+run\\s+$', _last)):
+                models = []
+                rpt = subprocess.run(['ollama', 'ps'],
+                                     capture_output=True, text=True)
+                rlt = subprocess.run(['ollama', 'list'],
+                                     capture_output=True, text=True)
+                rpl = rpt.stdout.split('\n')
+                rll = rlt.stdout.split('\n')
+                rpl.pop(0)
+                rll.pop(0)
+                for m in rpl + rll:
+                    m = re.sub('\\s+.*$', '', m)
+                    if m != '' and m not in models:
+                        models.append(m)
+                self.plus = '\\n'.join(models)
+                self.mode = 'Plus'
+            elif(re.match('^ollama\\s+stop\\s+$', _last)):
+                models = []
+                rpt = subprocess.run(['ollama', 'ps'],
+                                    capture_output=True, text=True)
+                rpl = rpt.stdout.split('\n')
+                rpl.pop(0)
+                for m in rpl:
+                    m = re.sub('\\s+.*$', '', m)
+                    if m != '' and m not in models:
+                        models.append(m)
+                self.plus = '\\n'.join(models)
+                self.mode = 'Plus'
         elif(re.match('^pdffonts\\s+', _last)):
             self.mode = 'File'
             self.regexp = '^.*\\.(p|P)(d|D)(f|F)$'
@@ -921,7 +971,11 @@ class Buffer:
             while(re.match('\\s+-(I|O|P|d)\\s+\\S+\\s+', _last)):
                 _last = re.sub('\\s+-(I|O|P|d)\\s+\\S+\\s+', ' ', _last)
             _temp = re.sub('^.*\\s+-\\S+\\s+', ' ', _last)
-            if(re.match('^\\s+$', _temp)):
+            if(re.match('^.*\\s+-O\\s+$', _last)):
+                # Not '\n' but '\\n'
+                self.plus = 'cp932\\nutf-8\\neuc-jp'
+                self.mode = 'Plus'
+            elif(re.match('^\\s+$', _temp)):
                 self.mode = 'File'
                 if(not re.match('^.*\\s+-d\\s+$', _last)):
                     self.regexp = '^.*\\.(z|Z)(i|I)(p|P)$'
