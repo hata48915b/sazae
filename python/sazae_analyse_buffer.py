@@ -3,7 +3,7 @@
 #
 # Name:         ~/.zshrc-sazae/python/sazae_analyze_buffer.py
 # Version:      v21
-# Time-stamp:   <2026.04.22-09:36:22-JST>
+# Time-stamp:   <2026.04.26-16:54:59-JST>
 #
 # Copyright (C) 2017-2026  Seiichiro HATA
 #
@@ -683,6 +683,66 @@ class Buffer:
         elif(re.match('^latex\\s+', _last)):
             self.mode = 'File'
             self.regexp = '^.*\\.(t|T)(e|E)(x|X)$'
+        elif(re.match('^lemonade\\s+', _last)):
+            if(re.match('^lemonade\\s+$', _last)):
+                # Not '\n' but '\\n'
+                self.plus = 'run' \
+                    '\\n' + 'launch' \
+                    '\\n' + 'backends' \
+                    '\\n' + 'recipes' \
+                    '\\n' + 'status' \
+                    '\\n' + 'logs' \
+                    '\\n' + 'scan' \
+                    '\\n' + 'config' \
+                    '\\n' + 'list' \
+                    '\\n' + 'pull' \
+                    '\\n' + 'delete' \
+                    '\\n' + 'load' \
+                    '\\n' + 'unload' \
+                    '\\n' + 'import' \
+                    '\\n' + 'export' \
+                    '\\n' + 'cleanup-cache'
+            elif(re.match('^lemonade\\s+pull\\s+$', _last)):
+                models = []
+                rlt = subprocess.run(['lemonade', 'list'],
+                                     capture_output=True, text=True)
+                rll = rlt.stdout.split('\n')
+                for mt in rll:
+                    ml = mt.split()
+                    if len(ml) > 2 and ml[1] == 'No':
+                        if ml[0] != '' and ml[0] not in models:
+                            models.append(ml[0])
+                self.plus = '\\n'.join(models)
+                self.mode = 'Plus'
+            elif(re.match('^lemonade\\s+load\\s+$', _last)):
+                models = []
+                rlt = subprocess.run(['lemonade', 'list'],
+                                     capture_output=True, text=True)
+                rll = rlt.stdout.split('\n')
+                for mt in rll:
+                    ml = mt.split()
+                    if len(ml) > 2 and ml[1] == 'Yes':
+                        if ml[0] != '' and ml[0] not in models:
+                            models.append(ml[0])
+                self.plus = '\\n'.join(models)
+                self.mode = 'Plus'
+            elif(re.match('^lemonade\\s+unload\\s+$', _last)):
+                models = []
+                rst = subprocess.run(['lemonade', 'status'],
+                                    capture_output=True, text=True)
+                rsl = rst.stdout.split('\n')
+                is_model = False
+                for m in rsl:
+                    if re.match('^-+$', m):
+                        continue
+                    if is_model:
+                        m = re.sub('\\s+.*$', '', m)
+                        if m != '' and m not in models:
+                            models.append(m)
+                    if re.match('^Model\\s+', m):
+                        is_model = True
+                self.plus = '\\n'.join(models)
+                self.mode = 'Plus'
         elif(re.match('^(libreoffice)|(soffice)\\s+', _last)):
             self.mode = 'File'
             self.regexp = '^.*\\.(' \
