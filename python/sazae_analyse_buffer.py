@@ -3,7 +3,7 @@
 #
 # Name:         ~/.zshrc-sazae/python/sazae_analyze_buffer.py
 # Version:      v21
-# Time-stamp:   <2026.04.26-16:54:59-JST>
+# Time-stamp:   <2026.05.07-20:50:19-JST>
 #
 # Copyright (C) 2017-2026  Seiichiro HATA
 #
@@ -826,8 +826,8 @@ class Buffer:
                     '\\n' + 'rm' \
                     '\\n' + 'launch' \
                     '\\n' + 'help'
-            elif(re.match('^ollama\\s+run\\s+$', _last)):
-                models = []
+            elif(re.match('^ollama\\s+run(\\s+\\S+)*\\s+$', _last)):
+                models = ['--hidethinking', '--nowordwrap']
                 rpt = subprocess.run(['ollama', 'ps'],
                                      capture_output=True, text=True)
                 rlt = subprocess.run(['ollama', 'list'],
