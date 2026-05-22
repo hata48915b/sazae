@@ -3,7 +3,7 @@
 #
 # Name:         ~/.zshrc-sazae/python/sazae_analyze_buffer.py
 # Version:      v21
-# Time-stamp:   <2026.05.07-20:50:19-JST>
+# Time-stamp:   <2026.05.22-14:37:21-JST>
 #
 # Copyright (C) 2017-2026  Seiichiro HATA
 #
@@ -522,6 +522,152 @@ class Buffer:
                                                self.buf_array_out[2])
         elif(re.match('^dnf\\s+', _last)):
             self.mode = 'norm'
+        elif(re.match('^docker\\s+', _last)):
+            if(re.match('^docker\\s+$', _last)):
+                # Not '\n' but '\\n'
+                self.plus = 'attach' \
+                    '\\n' + 'bake' \
+                    '\\n' + 'build' \
+                    '\\n' + 'builder' \
+                    '\\n' + 'buildx' \
+                    '\\n' + 'commit' \
+                    '\\n' + 'compose' \
+                    '\\n' + 'container' \
+                    '\\n' + 'context' \
+                    '\\n' + 'cp' \
+                    '\\n' + 'create' \
+                    '\\n' + 'diff' \
+                    '\\n' + 'events' \
+                    '\\n' + 'exec' \
+                    '\\n' + 'export' \
+                    '\\n' + 'history' \
+                    '\\n' + 'image' \
+                    '\\n' + 'images' \
+                    '\\n' + 'import' \
+                    '\\n' + 'info' \
+                    '\\n' + 'inspect' \
+                    '\\n' + 'kill' \
+                    '\\n' + 'load' \
+                    '\\n' + 'login' \
+                    '\\n' + 'logout' \
+                    '\\n' + 'logs' \
+                    '\\n' + 'manifest' \
+                    '\\n' + 'network' \
+                    '\\n' + 'pause' \
+                    '\\n' + 'plugin' \
+                    '\\n' + 'port' \
+                    '\\n' + 'ps' \
+                    '\\n' + 'pull' \
+                    '\\n' + 'push' \
+                    '\\n' + 'rename' \
+                    '\\n' + 'restart' \
+                    '\\n' + 'rm' \
+                    '\\n' + 'rmi' \
+                    '\\n' + 'run' \
+                    '\\n' + 'save' \
+                    '\\n' + 'search' \
+                    '\\n' + 'start' \
+                    '\\n' + 'stats' \
+                    '\\n' + 'stop' \
+                    '\\n' + 'swarm' \
+                    '\\n' + 'system' \
+                    '\\n' + 'tag' \
+                    '\\n' + 'top' \
+                    '\\n' + 'trust' \
+                    '\\n' + 'unpause' \
+                    '\\n' + 'update' \
+                    '\\n' + 'version' \
+                    '\\n' + 'volume' \
+                    '\\n' + 'wait'
+                self.mode = 'Plus'
+            elif(re.match('^docker\\s+attach\\s+', _last)):
+                last_argv = self.buf_array_out[2] + self.buf_array_out[3]
+                #
+                alive = []
+                rpt = subprocess.run(['docker', 'ps'],
+                                     capture_output=True, text=True)
+                rpl = rpt.stdout.split('\n')
+                rpl.pop(0)
+                for ps in rpl:
+                    cont_name = re.sub('^.*\\s+', '', ps)
+                    if cont_name == '':
+                        continue
+                    if not re.match('^' + last_argv, cont_name):
+                        continue
+                    alive.append(cont_name)
+                self.plus = '\\n'.join(alive)
+                self.mode = 'Plus'
+            elif(re.match('^docker\\s+cp\\s+', _last)):
+                last_argv = self.buf_array_out[2] + self.buf_array_out[3]
+                #
+                containers = []
+                rpt = subprocess.run(['docker', 'ps'],
+                                     capture_output=True, text=True)
+                rpl = rpt.stdout.split('\n')
+                rpl.pop(0)
+                for ps in rpl:
+                    cont_name = re.sub('^.*\\s+', '', ps)
+                    if cont_name == '':
+                        continue
+                    if not re.match('^' + cont_name + ':', last_argv) and \
+                       not re.match('^' + last_argv, cont_name + ':'):
+                        continue
+                    containers.append(cont_name)
+                containers.sort()
+                #
+                plus = []
+                for cont_name in containers:
+                    if re.match('^' + last_argv, cont_name + ':'):
+                        plus.append(cont_name + ':/')
+                    elif re.match('^' + cont_name + ':', last_argv):
+                        path = re.sub(cont_name + ':', '', last_argv)
+                        dire = re.sub('[^/]+$', '', path)
+                        rft = subprocess.run(['docker', 'container', 'exec',
+                                              cont_name, 'ls', dire],
+                                             capture_output=True, text=True)
+                        rfl = rft.stdout.split('\n')
+                        rfl.sort()
+                        for p in rfl:
+                            if re.match('^' + path, dire + p):
+                                tmp = subprocess.run(
+                                    ['docker', 'container', 'exec',
+                                     cont_name, 'test', '-d', dire + p],
+                                    capture_output=True, text=True)
+                                if tmp.returncode == 0:
+                                    plus.append(cont_name + ':' + dire + p + '/')
+                                else:
+                                    plus.append(cont_name + ':' + dire + p)
+                self.plus = '\\n'.join(plus)
+            elif(re.match('^docker\\s+start\\s+', _last)):
+                last_argv = self.buf_array_out[2] + self.buf_array_out[3]
+                #
+                alive = []
+                rpt = subprocess.run(['docker', 'ps'],
+                                     capture_output=True, text=True)
+                rpl = rpt.stdout.split('\n')
+                rpl.pop(0)
+                for ps in rpl:
+                    cont_name = re.sub('^.*\\s+', '', ps)
+                    if cont_name == '':
+                        continue
+                    if not re.match('^' + last_argv, cont_name):
+                        continue
+                    alive.append(cont_name)
+                dead = []
+                rpt = subprocess.run(['docker', 'ps', '-a'],
+                                     capture_output=True, text=True)
+                rpl = rpt.stdout.split('\n')
+                rpl.pop(0)
+                for ps in rpl:
+                    cont_name = re.sub('^.*\\s+', '', ps)
+                    if cont_name == '':
+                        continue
+                    if not re.match('^' + last_argv, cont_name):
+                        continue
+                    if cont_name not in alive:
+                        dead.append(cont_name)
+                self.plus = '\\n'.join(dead)
+                self.mode = 'Plus'
         elif(re.match('^docx2md\\s+', _last)):
             self.mode = 'Flie'
             if(not re.match('^.*\\.docx\\s+$', _last, re.I)):
@@ -826,6 +972,7 @@ class Buffer:
                     '\\n' + 'rm' \
                     '\\n' + 'launch' \
                     '\\n' + 'help'
+                self.mode = 'Plus'
             elif(re.match('^ollama\\s+run(\\s+\\S+)*\\s+$', _last)):
                 models = ['--hidethinking', '--nowordwrap']
                 rpt = subprocess.run(['ollama', 'ps'],
