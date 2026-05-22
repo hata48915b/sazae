@@ -3,7 +3,7 @@
 #
 # Name:         ~/.zshrc-sazae/python/sazae_analyze_buffer.py
 # Version:      v21
-# Time-stamp:   <2026.05.22-14:37:21-JST>
+# Time-stamp:   <2026.05.22-14:44:37-JST>
 #
 # Copyright (C) 2017-2026  Seiichiro HATA
 #
@@ -638,7 +638,7 @@ class Buffer:
                                 else:
                                     plus.append(cont_name + ':' + dire + p)
                 self.plus = '\\n'.join(plus)
-            elif(re.match('^docker\\s+start\\s+', _last)):
+            elif(re.match('^docker\\s+(rm|start)\\s+', _last)):
                 last_argv = self.buf_array_out[2] + self.buf_array_out[3]
                 #
                 alive = []
