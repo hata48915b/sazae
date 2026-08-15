@@ -3,7 +3,7 @@
 #
 # Name:         ~/.zshrc-sazae/python/sazae_analyze_buffer.py
 # Version:      v21
-# Time-stamp:   <2026.05.22-14:44:37-JST>
+# Time-stamp:   <2026.08.15-13:28:18-JST>
 #
 # Copyright (C) 2017-2026  Seiichiro HATA
 #
@@ -988,7 +988,7 @@ class Buffer:
                     if m != '' and m not in models:
                         models.append(m)
                 self.plus = '\\n'.join(models)
-                self.mode = 'Plus'
+                self.mode = 'plus'
             elif(re.match('^ollama\\s+stop\\s+$', _last)):
                 models = []
                 rpt = subprocess.run(['ollama', 'ps'],
