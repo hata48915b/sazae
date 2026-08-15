@@ -1,6 +1,6 @@
 # Name:         ~/.zshrc-sazae/zshrc
 # Version:      v26
-# Time-stamp:   <2026.04.21-14:52:07-JST>
+# Time-stamp:   <2026.04.22-09:25:20-JST>
 #
 # Copyright (C) 2017-2026  Seiichiro HATA
 #
@@ -666,11 +666,11 @@ _sazae-get-candidates (){
     local r; r=`eval "\printf %s \"$2\" 2> /dev/null | $sazae_migemo_command"`
     r="$m|$r"
     if [ ! -z "$sazae_plus" ]; then
-	if [ ! -z "$g$m" ]; then
-	    \printf %b "$sazae_plus" | eval "\grep -a -E \"^$g($r)\"" 2> /dev/null
-	fi
+	\printf %b "$sazae_plus" | eval "\grep -a \"^$g$m\"" 2> /dev/null
     fi
-    if [ "$sazae_mode" = 'moun' -a -r /etc/mtab ]; then
+    if [ "$sazae_mode" = 'Plus' ]; then
+	:
+    elif [ "$sazae_mode" = 'moun' -a -r /etc/mtab ]; then
 	# 漢字名のディレクトリにマウントされている可能性があるので，migemo補完にする必要性がある
 	if ( \printf %s "$g" | \grep '^/' > /dev/null ); then
 	    # 絶対パス
